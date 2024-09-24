@@ -3,6 +3,7 @@
 ## Project Group
 
 - Sheridan Heywood (ym21803)
+- Vivek Paligadu (mn21313)
 
 This project has a (insert split) equity split betwen the four project partners.
 
