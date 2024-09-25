@@ -18,7 +18,7 @@ One type of financial data is financial time series. [Add more. Talk about what 
 
 ```{r requirements}
 # List of required packages
-required_packages <- c("quantmod", "ggplot2", "dplyr", "lubridate", "zoo")
+required_packages <- c("ggplot2", "gridExtra")
 
 # Function to check if packages are installed
 new_packages <- required_packages[!(required_packages %in% installed.packages()[,"Package"])]
@@ -28,6 +28,10 @@ if(length(new_packages)) install.packages(new_packages)
 
 # Load required packages
 lapply(required_packages, library, character.only = TRUE)
+
+# Load required packages
+library(ggplot2)
+library(gridExtra)
 ```
 
 # Loading data
@@ -37,12 +41,6 @@ We obtain the stock data for Apple from Yahoo Finance API from [date] to now. (I
 Check https://bookdown.org/compfinezbook/introcompfinr/ReturnCalculationsR.html
 
 ```{r}
-# Load required packages
-library(quantmod)
-library(ggplot2)
-library(gridExtra)
-library(zoo)
-
 # Get historical stock data for Apple (AAPL) in xts format
 getSymbols("AAPL", src = "yahoo", from = "2020-01-01", to = Sys.Date())
 str(AAPL)
@@ -98,6 +96,19 @@ We can see that the closing price has [.... insert observations.].
 
 A quantity of interest is the returns. Given the price process $\{P_t\}$, we can compute the log-return $X_t$ at time $t$ using the formula $$X_t = \log \left( \frac{P_t}{P_{t-1}} \right).$$ Note that if we have $N$ values for the price, we will have $N-1$ values for the log-returns. [Source needed:] We observe that $\{X_t\}$ has a sample path resembling that of a sequence of uncorrelated random variables with possibly time-varying variance.
 
+1. Serial Dependence Without Correlation:
+Explanation: Asset returns often exhibit no significant autocorrelation, which implies they are weakly dependent in terms of linear relationships (e.g., no strong correlation), but there may still be dependencies (e.g., in volatility or higher moments).
+Plot: We'll plot autocorrelation (ACF) of returns to show the lack of linear dependence.
+2. Volatility Clustering:
+Explanation: High-volatility periods tend to be followed by high-volatility periods, and low-volatility periods tend to follow low-volatility periods. This is often visible in returns' time series.
+Plot: Plot returns and highlight periods of high and low volatility.
+3. Heavy-Tailed Distribution:
+Explanation: Financial returns do not follow a normal distribution; they tend to have heavier tails, meaning extreme events (both positive and negative) occur more frequently than would be expected in a normal distribution.
+Plot: A histogram of returns compared to a normal distribution.
+4. Leverage Effect:
+Explanation: Negative returns (e.g., price drops) are often followed by higher volatility. The effect can be analyzed by plotting returns against volatility.
+Plot: Scatter plot of returns vs volatility (rolling standard deviation).
+
 ```{r}
 # Calculate Daily Log Returns directly on the xts object
 AAPL$Log_Returns <- diff(log(AAPL$AAPL.Close))
@@ -112,7 +123,6 @@ p4 <- ggplot() +
 AAPL$Log_Returns <- diff(log(AAPL$AAPL.Close))
 
 # --- 1. Serial Correlation ---
-
 
 # Set up the plotting area to display 3 plots side by side
 par(mfrow = c(1, 3))  # Set up the plot window to have 1 row and 3 columns
@@ -173,97 +183,5 @@ qqplot(positive_lag, negative_lag,
 
 # Add a 45-degree reference line
 abline(0, 1, col = "red", lwd = 2)
-
-```
-
-1. Serial Dependence Without Correlation:
-Explanation: Asset returns often exhibit no significant autocorrelation, which implies they are weakly dependent in terms of linear relationships (e.g., no strong correlation), but there may still be dependencies (e.g., in volatility or higher moments).
-Plot: We'll plot autocorrelation (ACF) of returns to show the lack of linear dependence.
-2. Volatility Clustering:
-Explanation: High-volatility periods tend to be followed by high-volatility periods, and low-volatility periods tend to follow low-volatility periods. This is often visible in returns' time series.
-Plot: Plot returns and highlight periods of high and low volatility.
-3. Heavy-Tailed Distribution:
-Explanation: Financial returns do not follow a normal distribution; they tend to have heavier tails, meaning extreme events (both positive and negative) occur more frequently than would be expected in a normal distribution.
-Plot: A histogram of returns compared to a normal distribution.
-4. Leverage Effect:
-Explanation: Negative returns (e.g., price drops) are often followed by higher volatility. The effect can be analyzed by plotting returns against volatility.
-Plot: Scatter plot of returns vs volatility (rolling standard deviation).
-
-
-# Exploratory data analysis
-
-We perform EDA on the dataset. We first check the structure of the data and the 
-
-```{r}
-# EDA: Check data types and summary
-str(aapl_data)  # Structure of the data
-summary(aapl_data)  # Summary statistics
-```
-
-We see that the data contains 7 variables. This is summarised below.
-
-| Variable Name | Description                                         |
-|---------------|-----------------------------------------------------|
-| Date          | The date of the stock price observation.           |
-| Open          | The stock price at market open.                    |
-| High          | The highest stock price during the trading day.    |
-| Low           | The lowest stock price during the trading day.     |
-| Close         | The stock price at market close.                   |
-| Volume        | The total number of shares traded during the day.  |
-| Adjusted      | The adjusted closing price, accounting for splits and dividends. |
-
-Before going further, we check for missingness in the data.
-
-```{r}
-# Check for missing values
-missing_values <- sapply(aapl_data, function(x) sum(is.na(x)))
-print(missing_values)
-```
-We see that there is no missing data, which is expected since this dataset is sourced from Yahoo Finance, a platform that aggregates stock information from publicly available sources.
-
-We can make several plots to visualise the data. We begin by viewing plots of the closing price and trading volume over time.
-
-```{r}
-# Plot: Closing Price Over Time
-p1 <- ggplot(aapl_data, aes(x = Date, y = Close)) +
-  geom_line(color = "blue") +
-  labs(title = "AAPL Closing Price Over Time", x = "Date", y = "Closing Price") +
-  theme_minimal()
-
-# Plot: Volume Over Time
-p2 <- ggplot(aapl_data, aes(x = Date, y = Volume)) +
-  geom_col(fill = "lightblue") +
-  labs(title = "AAPL Trading Volume Over Time", x = "Date", y = "Volume") +
-  theme_minimal()
-
-# Arrange plots in a grid
-gridExtra::grid.arrange(p1, p2, ncol = 1)
-```
-
-```{r}
-# Calculate daily returns and remove NA values
-aapl_data <- aapl_data %>%
-  mutate(Daily_Return = (Close / lag(Close) - 1)) %>%
-  na.omit()  # Remove rows with NA values for daily returns
-
-# Plot: Daily Returns
-p3 <- ggplot(aapl_data, aes(x = Date, y = Daily_Return)) +
-  geom_line(color = "green") +
-  labs(title = "AAPL Daily Returns", x = "Date", y = "Daily Return") +
-  theme_minimal()
-
-# Calculate the 30-day moving average and remove NA values
-aapl_data <- aapl_data %>%
-  mutate(MA30 = rollmean(Close, k = 30, fill = NA, align = "right")) %>%
-  na.omit()  # Remove rows with NA values for moving average
-
-# Plot: Moving Average (30 days)
-p4 <- ggplot(aapl_data, aes(x = Date)) +
-  geom_line(aes(y = Close), color = "blue") +
-  geom_line(aes(y = MA30), color = "red") +
-  labs(title = "AAPL Closing Price with 30-Day Moving Average", x = "Date", y = "Price") +
-  theme_minimal()
-
-
 
 ```
