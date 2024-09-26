@@ -1,32 +1,40 @@
 ---
-title: "01-Introduction"
-author: "Vivek 2012797"
-date: "`r Sys.Date()`"
-output: html_document
+title: "Introduction"
+subtitle: A Foray into Financial Data Analysis
+output:
+  pdf_document:
+    toc: true
+  bookdown::pdf_book:
+    keep_tex: true
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    highlight: tango
+    code_folding: hide
+    number_sections: true
+    collapsed: true
+header-includes: \usepackage{fvextra} \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+urlcolor: blue
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+Note: This document is knitted to pdf for easier viewing.
 
-# Project introduction
+# Introduction
 
-# Types of data
+This group project focuses on exploring a chosen application domain through the lens of data science. The primary objective is to gain hands-on experience with data science techniques while developing collaborative working skills and expanding programming knowledge. We have chosen to focus on finance data, specifically exploring areas such as credit card fraud detection, financial time series analysis, and other relevant financial datasets. The primary objective is to gain practical experience with data science techniques within the financial domain, while fostering collaborative teamwork and enhancing programming skills. The exploration of this application domain will guide our choice of dataset for analysis, which will be carried out in Assessment 1.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Our challenge involves conducting a literature review of data science resources that aid in analyzing finance data. This will include:
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+- examining the types of financial data that exist: We will search for sources of data and assess their suitability for use to explore a classification or regression problem.
 
-```{r cars}
-summary(cars)
-```
+- exploring the key resources available for analysis: We will perform exploratory data analysis to understand the data structure. We will use resources to explore and understand methods to analyse such data.
 
-# Types of resource
+- judge suitability of such datasets: We will consider the statistical methods that are used to analyse the data and check whether they fall within the scope of Assessment 1. We will consider the ways of evaluating such methods, taking care to adapt the methods as needed to the particular dataset. 
 
-You can also embed plots, for example:
+Additionally, we will explore the use of general data science resources, assessing their applicability to financial datasets. This will help us build a repertory of resources that we can then use during the next assessment, and even further beyond. Our team will identify relevant resources, run and modify code examples, and create original visualizations, culminating in a structured report that synthesizes our findings and insights.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# References
+
+1. Project brief, accessible on [Github](https://dsbristol.github.io/dst/assets/assessments/Assessment0.pdf). This link was accessed 18:00 on 26/09/2024.
