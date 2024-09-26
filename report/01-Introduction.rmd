@@ -1,18 +1,18 @@
 ---
-title: "R Notebook"
+title: "Introduction"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+# Introduction
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+This group project focuses on exploring a chosen application domain through the lens of data science. The primary objective is to gain hands-on experience with data science techniques while developing collaborative working skills and expanding programming knowledge. We have chosen to focus on finance data, specifically exploring areas such as credit card fraud detection, financial time series analysis, and other relevant financial datasets. The primary objective is to gain practical experience with data science techniques within the financial domain, while fostering collaborative teamwork and enhancing programming skills. The exploration of this application domain will guide our choice of dataset for analysis, which will be carried out in Assessment 1.
 
-```{r}
-plot(cars)
-```
+Our challenge involves conducting a literature review of data science resources that aid in analyzing finance data. This will include:
+- examining the types of financial data that exist: We will search for sources of data and assess their suitability for use to explore a classification or regression problem.
+- exploring the key resources available for analysis: We will perform exploratory data analysis to understand the data structure. We will use resources to explore and understand methods to analyse such data.
+- judge suitability of such datasets: We will consider the methods that are used to analyse the data and check whether they fall within the scope of Assessment 1. We will consider the ways of evaluating such datasets. 
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+Additionally, we will explore the use of general data science resources, assessing their applicability to financial datasets. This will help us build a repertory of resources that we can then use during the next assessment, and even further beyond. Our team will identify relevant resources, run and modify code examples, and create original visualizations, culminating in a structured report that synthesizes our findings and insights.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+Resources for this section:
+1. Project brief, accessible on [Github](https://dsbristol.github.io/dst/assets/assessments/Assessment0.pdf). This link was accessed 18:00 on 26/09/2024.
