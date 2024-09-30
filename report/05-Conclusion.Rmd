@@ -22,11 +22,4 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Conclusion
 
-The aim of this project was to help us work collaboratively 
-on a chosen application domain. We used Github for file hosting and version control.
-We did research on the various types of datasets available and looked at the possible application domains we could look at.
-In this process, we found resources such as Kaggle, the UCI Machine Learning Repository and the Monash Time Series Repository.
-Through our research, we settled on financial data as our application domain due to its abudance and the rich opportunities it offers for applying techniques.
-Organising our team through WhatsApp, we split into teams to look at two different financial datasets: one on credit card fraud and one on Apple's stock data.
-This allowed us to gain an insight into the types of financial data that we could analyse for Project 1. We decided that financial time series required too advanced
-techniques. We therefore settled on finding a dataset similar to the credit card fraud dataset, where we would demonstrate what we have learnt in this project.
+The aim of this project was to help us work collaboratively on a chosen application domain. We used Github for file hosting and version control. We did research on the various types of datasets available and looked at the possible application domains we could look at. In this process, we found resources such as Kaggle, the UCI Machine Learning Repository and the Monash Time Series Repository. Through our research, we settled on financial data as our application domain due to its abundance and the rich opportunities it offers for applying techniques. Organising our team through WhatsApp, we split into teams to look at two different financial datasets: one on credit card fraud and one on Apple's stock data. Analysis of the credit card fraud dataset allowed us to realise certain limitations of the data, and some ways to get around this. This allowed us to gain an insight into the types of financial data that we could analyse for Project 1, and the challenges that may come with that. We decided that financial time series required too advanced techniques. We therefore settled on finding a dataset similar to the credit card fraud dataset, where we would demonstrate and build upon what we have learnt in this project.
