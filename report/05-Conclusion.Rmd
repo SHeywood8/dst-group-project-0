@@ -1,0 +1,25 @@
+---
+title: "Conclusion"
+output:
+  pdf_document:
+    toc: true
+  bookdown::pdf_book:
+    keep_tex: true
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    highlight: tango
+    code_folding: hide
+    number_sections: true
+    collapsed: true
+header-includes: \usepackage{fvextra} \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+urlcolor: blue
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Conclusion
+
+The aim of this project was to help us work collaboratively on a chosen application                                                             domain.
