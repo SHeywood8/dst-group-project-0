@@ -41,5 +41,5 @@ Our working is shown in our own directories,
 * SheridanH/Imbalanced_Data.ipynb
 * EliM/Credit Card Fraud - Group Assessment 0.ipynb
 
-Vivek wrote the introduction, conclusion and data documents. Eli and Sheridan individually worked on the Credit Card Fraud dataset. Vivek also worked on the Apple stock data.
+Vivek wrote the introduction, conclusion and data documents. Eli and Sheridan individually worked on the Credit Card Fraud dataset. Vivek also worked on the Apple stock data. Sheridan contributed to the conclusion.
 
