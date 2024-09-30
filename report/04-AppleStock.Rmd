@@ -1,10 +1,10 @@
 ---
 title: "Analysis of Financial Time Series"
 output:
-  bookdown::pdf_book:
-    keep_tex: true
   pdf_document:
     toc: true
+  bookdown::pdf_book:
+    keep_tex: true
   bookdown::html_document2:
     toc: true
     toc_float: true
