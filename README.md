@@ -14,12 +14,14 @@ All report content is in the directory:
 
 * report/
 
-The report takes the following structure (taken from the Example Assessment - we can edit as we go):
+The report takes the following structure:
 
-* 01-Data.Rmd
-* 02-R_analysis.Rmd
-* 03-Python_Analysis.ipynb
-* 04-Wrapup.Rmd
+* 01-Introduction.Rmd
+* 02-Data.Rmd
+* 03-01-CreditCardFraud.ipynb
+* 03-02-CreditCardFraudImbalancedData.ipynb
+* 04-OtherFinancialData.Rmd
+* 05-Conclusion.Rmd
 
 With html output of the Rmd content included for convenience.
 
@@ -41,17 +43,9 @@ pip3 install -r requirements.txt
 
 Our working is shown in our own directories,
 
-* RachelR/test.Rmd
-* PeterP/work.ipynb
+* VivekP
+* SheridanH/Imbalanced_Data.ipynb
+* EliM/Credit Card Fraud - Group Assessment 0.ipynb
 
-Rachel R wrote the R analysis, Peter P wrote the Python analysis, and we wrote the Data processing and wrapup together after examination of the whole analysis.
+Vivek wrote the introduction and data documents, Eli and Sheridan individually worked on the Credit Card Fraud dataset, and Vivek also worked on the Time Series dataset.
 
-## Reflections
-
-We have placed our reflections in the folder:
-
-* reflection/
-  - RachelR_Reflection.pdf
-  - PeterP_Reflection.pdf
-
-Thank you for reading!
