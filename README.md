@@ -20,24 +20,18 @@ The report takes the following structure:
 * 02-Data.Rmd
 * 03-01-CreditCardFraud.ipynb
 * 03-02-CreditCardFraudImbalancedData.ipynb
-* 04-OtherFinancialData.Rmd
+* 04-AppleStock.Rmd
 * 05-Conclusion.Rmd
 
-With html output of the Rmd content included for convenience.
+Pdf output of the Rmd content is included for convenience.
 
 ### Requirements:
 
-Requirements for the Rmd files are given within each script, or can be installed in advance using:
-```{sh}
-Rscript requirementsR.R
-```
-in which the list of packages used is given.
+Requirements for the Rmd files are given within each script.
 
-Requirements for the Python code is given in `requirements.txt`; to install, in a virtual environment run:
+Requirements for the Python code is given in the Python notebooks. 
 
-```{sh}
-pip3 install -r requirements.txt
-```
+We will explore the use of `requirement.txt` files in the next project.
 
 ## Evidence
 
@@ -47,5 +41,5 @@ Our working is shown in our own directories,
 * SheridanH/Imbalanced_Data.ipynb
 * EliM/Credit Card Fraud - Group Assessment 0.ipynb
 
-Vivek wrote the introduction and data documents, Eli and Sheridan individually worked on the Credit Card Fraud dataset, and Vivek also worked on the Time Series dataset.
+Vivek wrote the introduction, conclusion and data documents. Eli and Sheridan individually worked on the Credit Card Fraud dataset. Vivek also worked on the Apple stock data.
 
