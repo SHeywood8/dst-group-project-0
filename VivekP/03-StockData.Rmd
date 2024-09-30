@@ -1,8 +1,21 @@
 ---
-title: "Financial Time Series"
-date: "`r Sys.Date()`"
-output: html_document
+title: "Analysis of Financial Time Series"
+output:
+  pdf_document:
+    toc: true
+  bookdown::pdf_book:
+    keep_tex: true
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    highlight: tango
+    code_folding: hide
+    number_sections: true
+    collapsed: true
+header-includes: \usepackage{fvextra} \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+urlcolor: blue
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -10,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-One type of financial data is financial time series. For example, the sequential stock prices of [Apple](https://www.apple.com/uk/) (an American multinational corporation and technology company) over a period of time forms a financial time series. These time series exhibit distinct features such as volatility, which necessitate different methods to analysis of non-financial time series. Understanding the features of time series and techniques for their analysis is crucial to areas such as quant finance, and can help make informed investment decisions and assess market dynamics.
+One type of financial data is financial time series. This data sounded interesting to us and so we looked at the sequential stock prices of [Apple](https://www.apple.com/uk/) (an American multinational corporation and technology company) over a period of time. This forms a financial time series. These time series exhibit distinct features such as volatility, which necessitate different methods to analysis of non-financial time series. Understanding the features of time series and techniques for their analysis is crucial to areas such as quant finance, and can help make informed investment decisions and assess market dynamics.
 
 # Requirements
 
@@ -32,10 +45,7 @@ lapply(required_packages, library, character.only = TRUE)
 
 # Loading data
 
-We fetch the stock price data of Apple from the Yahoo Finance API (application interface). We chose this data as it can easily be accessed using the Yahoo Finance API and is an example of a financial time series.
-
-
-Check https://bookdown.org/compfinezbook/introcompfinr/ReturnCalculationsR.html
+We fetch the stock price data of Apple from the Yahoo Finance API (application interface). We chose this data as it can easily be accessed using the Yahoo Finance API and is an example of a financial time series. We do not go into the technicalities of APIs, as the following `R` code is sufficient to import the data.
 
 ```{r}
 # Get historical stock data for Apple (AAPL) in xts format
@@ -46,6 +56,8 @@ str(AAPL)
 ```
 
 We see that the data comes in the form of an `xts` object, meaning "eXtensible Time Series". This is also an `R` package (run `vignette('xts')` for more information) designed for handling and analyzing time series data. An xts object is a type of data structure that extends the `zoo` class, allowing users to work with time series data more effectively. Due to time constraints, we do not explore this much further, and direct the reader to a tutorial such as [1]. 
+
+We turn to exploratory data analysis in order to understand the data.
 
 # Exploratory Data Analysis
 
@@ -83,7 +95,8 @@ plot_histogram <- function(data, column_name) {
 }
 
 # Create a list of columns to plot
-columns_to_plot <- c("AAPL.Open", "AAPL.High", "AAPL.Low", "AAPL.Close", "AAPL.Adjusted")
+# columns_to_plot <- c("AAPL.Open", "AAPL.High", "AAPL.Low", "AAPL.Close", "AAPL.Adjusted")
+columns_to_plot <- c("AAPL.Open", "AAPL.Adjusted")
 
 # Plot histograms for each column
 for (col in columns_to_plot) {
@@ -91,9 +104,9 @@ for (col in columns_to_plot) {
 }
 ```
 
-As expected, we see that the shapes of the histograms are similar. We however uncover that the prices are bimodal. 
+**ADJUST THIS** As expected, we see that the shapes of the histograms are similar. We however uncover that the prices are bimodal. This was not seen in the earlier analysis. 
 
-We use line plots to visualise the closing price and trading volume over time. We also use a 30-day moving average for the closing price to understand the trend.
+We proceed with our exploration and use line plots to visualise the closing price and trading volume over time. We also use a 30-day moving average for the closing price to understand the trend. **EXPLAIN MOVING AVERAGE**
 
 ```{r}
 library(zoo)          # For rollmean
@@ -129,11 +142,11 @@ gridExtra::grid.arrange(p1, p2, ncol = 1)
 ```
 
 We see a warning as follows:
-`Warning: [38;5;232mRemoved 29 rows containing missing values or values outside the scale range (geom_line()).[39m`
+`Warning: [38;5;232mRemoved 29 rows containing missing values or values outside the scale range (geom_line()).[39m`
 
 This is because the 30-day moving average will not have values for the first 29 observations, because there are not enough observations at that point to form the 30-day moving average. It is not a cause for concern, but the code was not modified to suppress this warning due to time constraints. 
 
-We can see that the closing price is quite volatile but with an overall increasing trend.  The trading volume seems to be quite volatile as well, having high peaks between 2020 and 2021. We investigate the reason for these peaks. We found that this period coincided with a global pandemic, with a disease called Coronavirus Disease 2019 (COVID-19) affecting the world. On August 19 2020, Apple's market value exceeded 2 trillion US dollars (see a [source here](https://www.atlantis-press.com/article/125966048.pdf)). The trading volume seems to taper off and stabilise after 2021.
+We can see that the closing price is quite volatile but with an overall increasing trend.  The trading volume seems to be quite volatile as well, having high peaks in the time period between 2020 and 2021. We investigate the reason for these peaks. We found that this period coincided with a global pandemic, with a disease called Coronavirus Disease 2019 (COVID-19) affecting the world. On August 19 2020, Apple's market value exceeded 2 trillion US dollars (see a [source here](https://www.atlantis-press.com/article/125966048.pdf)). The trading volume seems to taper off and stabilise after 2021.
 
 # Further Exploration
 
@@ -237,13 +250,21 @@ abline(0, 1, col = "red", lwd = 2)
 
 ```
 
-Notice that there is no persistent autocorrelation in $\{X_t\}$ while the autocorrelation are very persistent for the $\{|X_t|\}$ and $\{X_t^2\}$. For the plot of $\{X_t^2\}$, we can see peaks indicating high volatility being somewhat clustered, showing the volatility clustering. The QQ plot shows that the log returns are heavy tailed. The quantile plot is not symmetric about the diagonal line, showing the leverage effect. 
+Notice that there is no persistent autocorrelation in $\{X_t\}$ while the autocorrelation are very persistent for the $\{|X_t|\}$ and $\{X_t^2\}$. 
+
+For the plot of $\{X_t^2\}$, we can see peaks indicating high volatility being somewhat clustered, showing the volatility clustering. 
+
+The QQ plot shows that the log returns are heavy tailed. 
+
+The quantile plot is not symmetric about the diagonal line, showing the leverage effect. 
 
 # Modelling
 
-Modelling this data uses the so-called ARCH models, or auto-regressive conditional heteroskedastic models. This is an advanced topic that would significantly lengthen this document. We refer the reader to Engle [1] for further details on this model. Generalisations such as the GARCH, EGARCH, IGARCH are also used in practice (see [3] for details on GARCH). This would take us too far afield, and would not yield a classification or regression problem.
+Modelling this data uses the so-called ARCH models, or **auto-regressive conditional heteroskedastic models**. This is an advanced topic that would significantly lengthen this document. We refer the reader to Engle [1] for further details. Generalisations such as the GARCH, EGARCH, IGARCH are also used in practice (see [3] for details on GARCH). This would take us too far afield, and would not yield a classification or regression problem.
 
-Indeed, such models are fitted by the methods of quasi-maximum likelihood. While this can be seen as minimizing a loss function (the negative (quasi-)log-likelihood), some may not consider the topic of time series modelling to be a regression problem. It may be noted that time series models do appear under `Appropriate Content` in Assessment 1 [guidance](https://dsbristol.github.io/dst/assets/assessments/Assessment1.pdf) and so this was not a fruitless or irrelevant endeavour.
+Indeed, such models are fitted by the methods of quasi-maximum likelihood. While this can be seen as minimizing a loss function (the negative (quasi-)log-likelihood), some may not consider the topic of time series modelling to be a regression problem. It may be noted that time series models do appear under `Appropriate Content` in Assessment 1 [guidance](https://dsbristol.github.io/dst/assets/assessments/Assessment1.pdf) and so it was not a fruitless or irrelevant endeavour to look at this data type.
+
+In particular, we learned about the richness of this data in its stylistic features and its possible modelling avenues. This was of interest to group members, and will help inform our choice of data for Project 1.
 
 # Conclusion
 

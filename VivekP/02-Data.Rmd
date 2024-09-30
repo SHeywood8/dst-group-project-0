@@ -31,7 +31,7 @@ In the world of data science and statistics, data is a critical asset that suppo
 
 - **Hybrid datasets**: Datasets that combine both structured and unstructured data. For example, healthcare records can include structured data in the form of patient data, appointment history, and lab results in a structured format. Unstructured data can include physician notes, discharge summaries, and patient feedback that may be written in narrative form.
 
-Data is used in many application domains. We provide a brief and certainly not exhaustive list of some domains, along with a simple example for each domain. We adapt the list provided in [4].
+In this project, we will deal with structured datasets as it is readily available online and is easier to analyse. Due to time constraints, other types of datasets were not looked at in detail. Having chosen the type of dataset, we next look to choose the application domain. Data is used in many application domains. We provide a brief and certainly not exhaustive list of some domains, along with a simple example for each domain. We adapt the list provided in [4].
 
 1. **Healthcare**: Using patient records and doctor notes to optimize treatment plans.
 2. **Retail and E-commerce**: Analyzing purchase data and customer reviews for personalized marketing.
@@ -41,17 +41,17 @@ Data is used in many application domains. We provide a brief and certainly not e
 6. **Telecommunications**: Merging call data records and customer service interactions for churn prediction.
 7. **Education**: Combining student performance data and open-ended survey responses to improve learning outcomes.
 
+We choose an application domain and justify our choice in the next section.
 
 # Choice of Application Domain
 
 We decided to focus on financial data. This choice stems from the critical role of financial data analysis in modern economies and the vast opportunities it offers for applying data science techniques. Financial data is not only abundant but also highly varied, ranging from transaction data and stock market information to time series related to interest rates and economic indicators. Financial markets generate large amounts of data, making them ideal for exploring predictive modelling. Furthermore, financial datasets are readily accessible from numerous reputable sources, enabling us to experiment with various machine learning techniques and tools to uncover valuable insights and trends.
 
-By focusing on financial data, we seek to enhance our understanding of data science while working in an area of personal interest to the group members.
-
+By focusing on financial data, we seek to enhance our understanding of data science while working in an area of personal interest to the group members. We next explore what data we can analyse in this application domain.
 
 # Introduction to Financial Data
 
-Financial data is used to analyze trends, behaviors, and patterns within financial markets, institutions, and transactions. The primary types of financial data include:
+Financial data is very rich and varied. It can be used to analyze trends, behaviors, and patterns within financial markets, institutions, and transactions. The primary types of financial data include:
 
 - **Transaction Data**: Detailed records of individual financial transactions, such as credit card purchases, which are often analyzed to detect fraud.
 
@@ -61,13 +61,13 @@ Financial data is used to analyze trends, behaviors, and patterns within financi
 
 - **Financial Statements**: Data extracted from balance sheets, income statements, and cash flow statements of companies, providing insight into financial health and performance.
 
-The list above is adapted from [5] and [6].
+The list above is adapted from [5] and [6]. We now look at sources of financial data to help us make our choices.
 
 # Sources of Financial Data
 
 Several repositories and databases offer access to a wealth of financial datasets for analysis, including:
 
-- **[Kaggle](https://www.kaggle.com/datasets)**: A popular platform for data science competitions that hosts a wide range of financial datasets, including those related to credit card fraud detection..
+- **[Kaggle](https://www.kaggle.com/datasets)**: A popular platform for data science competitions that hosts a wide range of financial datasets, including those related to credit card fraud detection.
 
 - **[UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)**: A repository of datasets which can be used for classification and regression.
 
@@ -81,7 +81,11 @@ Several repositories and databases offer access to a wealth of financial dataset
 
 Access to varied and rich financial datasets ensures the ability to perform comprehensive analysis and create meaningful visualizations, which are crucial for developing our data science skills and to uncover insights into the data.
 
+We chose to use Kaggle and the Yahoo Finance API as they provided easy ways to access data. From Kaggle, we chose to analyse the Credit Card Fraud dataset, and from the Yahoo Finance API, we analysed Apple stock data.
+
 # References
+
+Online resources were helpful in our research. We provide a list of such resources below.
 
 1. **[Blog on Dataset Types: Sprinkledata](https://www.sprinkledata.com/blogs/what-is-a-dataset-types-examples-and-the-techniques-involved)**: This allowed us to get an overview of the types of datasets.
 2. **[Office for National Statistics](https://service-manual.ons.gov.uk/content/content-types/datasets)**: This source defines datasets in a different way to what we have in this text.
