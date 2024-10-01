@@ -29,7 +29,13 @@ Pdf output of the Rmd content is included for convenience.
 
 Requirements for the Rmd files are given within each script.
 
-Requirements for the Python code is given in the Python notebooks. 
+Requirements for the Python code are the following modules:
+
+* numpy
+* pandas
+* matplotlib.pyplot
+* seaborn
+* scikit-learn
 
 We will explore the use of `requirement.txt` files in the next project.
 
