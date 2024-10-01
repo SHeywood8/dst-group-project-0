@@ -6,7 +6,7 @@
 - Vivek Paligadu (mn21313)
 - Eli Miller (fp21952)
 
-This project has a (insert split) equity split betwen the four project partners.
+This project has a equal equity split.
 
 ## Reading order and requirements
 
